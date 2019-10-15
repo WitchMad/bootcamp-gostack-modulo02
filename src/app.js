@@ -1,4 +1,4 @@
-import express from 'express';
+import express from 'express'; //With sucrase is possible to use "import"
 import routes from './routes';
 
 class App {
