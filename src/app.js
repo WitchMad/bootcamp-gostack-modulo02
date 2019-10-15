@@ -1,8 +1,8 @@
-import express from 'express'; //With sucrase is possible to use "import"
+import express from 'express'; // With sucrase is possible to use "import"
 import routes from './routes';
 
 class App {
-  constructor(){
+  constructor() {
     this.server = express();
 
     this.middlewares();
