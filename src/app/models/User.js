@@ -2,6 +2,8 @@ import { Sequelize, Model } from 'sequelize';
 
 class User extends Model {
   static init(sequelize) {
+    // sequelize -> connection with database
+    // super.init makes a model of de datas required
     super.init(
       {
         name: Sequelize.STRING,
@@ -10,7 +12,7 @@ class User extends Model {
         provider: Sequelize.BOOLEAN,
       },
       {
-        sequelize,
+        sequelize, // The conection comes likes a second paramether to super
       }
     );
   }
