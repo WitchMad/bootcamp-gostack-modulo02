@@ -1,6 +1,8 @@
 import express from 'express'; // With sucrase is possible to use "import"
 import routes from './routes';
 
+import './database';
+
 class App {
   constructor() {
     this.server = express();
