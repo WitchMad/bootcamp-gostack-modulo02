@@ -9,7 +9,7 @@ class User extends Model {
       {
         name: Sequelize.STRING,
         email: Sequelize.STRING,
-        password: Sequelize.VIRTUAL,
+        password: Sequelize.VIRTUAL, // VIRTUAL does not is registred in data base
         password_hash: Sequelize.STRING,
         provider: Sequelize.BOOLEAN,
       },
@@ -18,6 +18,7 @@ class User extends Model {
       }
     );
 
+    // Execute this function beforeSave user in data base, to encrypt password
     this.addHook('beforeSave', async user => {
       if (user.password) {
         user.password_hash = await bcrypt.hash(user.password, 8);

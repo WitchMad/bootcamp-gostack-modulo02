@@ -1,10 +1,24 @@
 import jwt from 'jsonwebtoken';
+import * as Yup from 'yup'; // Yup makes a data validation
 
 import authConfig from '../../config/auth';
 import User from '../models/User';
 
 class SessionController {
   async store(req, res) {
+    const schema = Yup.object().shape({
+      // Create a Yup object configuring what shape have to have the data
+      email: Yup.string()
+        .email()
+        .required(),
+      password: Yup.string().required(),
+    });
+
+    if (!(await schema.isValid(req.body))) {
+      // Verify if is the right shape
+      return res.status(400).json({ error: 'Validation fails' });
+    }
+
     const { email, password } = req.body;
 
     const user = await User.findOne({
@@ -14,7 +28,7 @@ class SessionController {
     if (!user) {
       return res.status(401).json({ error: 'User not found' });
     }
-
+    // Call the method checkPassword from User model
     if (!(await user.checkPassword(password))) {
       return res.status(401).json({ error: 'Password does not match' });
     }
@@ -27,6 +41,7 @@ class SessionController {
         name,
         email,
       },
+      // Creates a token session
       token: jwt.sign({ id }, authConfig.secret, {
         expiresIn: authConfig.expiresIn,
       }),
