@@ -2,6 +2,15 @@
 
 ### This repository is a study of NodeJs API Rest
 
+### What this project is?
+
+##### It's a simple NodeJs API REST, with user's register, login and update user.
+##### Features:
+###### Session validation with jsonwebtoken
+###### Sequelize DataBase
+###### Sucrase usage
+###### Encrypt password with bcryptjs
+
 ### What's was studied?
 
 - [x] eslint
@@ -11,6 +20,7 @@
 - [x] sucrase
 - [x] bcryptjs
 - [x] yup
+- [x] jsonwebtoken
 
 ## A little explanation...
 
@@ -34,7 +44,10 @@
 6. bcryptjs:
   - Module to encryptation
 
-7. Yup:
+7. yup:
   - Module to Validation Input's
+
+8. jsonwebtoken:
+  - Token to use in sessions validate
 
 # GoStack 9.0
