@@ -1,4 +1,5 @@
 import express from 'express'; // With sucrase is possible to use "import"
+import path from 'path';
 import routes from './routes';
 
 import './database';
@@ -13,6 +14,10 @@ class App {
 
   middlewares() {
     this.server.use(express.json());
+    this.server.use(
+      '/files',
+      express.static(path.resolve(__dirname, '..', 'tmp', 'uploads'))
+    );
   }
 
   routes() {
