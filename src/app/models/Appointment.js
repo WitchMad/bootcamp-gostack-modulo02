@@ -7,7 +7,7 @@ class Appointment extends Model {
     super.init(
       {
         date: Sequelize.DATE,
-        cancelled_at: Sequelize.DATE,
+        canceled_at: Sequelize.DATE,
       },
       {
         sequelize, // The conection comes likes a second paramether to super
