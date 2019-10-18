@@ -71,16 +71,16 @@ class AppointmentController {
         .json({ error: 'You can only create appointments with providers' });
     }
     /**
-     * Checking for past dates
+     * verify if date already passed
      */
-    const hourStart = startOfHour(parseISO(date));
+    const hourStart = startOfHour(parseISO(date)); // parseISO transform from string to date
 
     if (isBefore(hourStart, new Date())) {
       return res.status(400).json({ error: 'Past dates are not permitted' });
     }
 
     /**
-     * Check date availability
+     * verify if this date is already reserved
      */
 
     const checkAvailability = await Appointment.findOne({
@@ -131,6 +131,11 @@ class AppointmentController {
           as: 'provider',
           attributes: ['name', 'email'],
         },
+        {
+          model: User,
+          as: 'user',
+          attributes: ['name'],
+        },
       ],
     });
 
@@ -143,6 +148,7 @@ class AppointmentController {
     const dateWithSub = subHours(appointment.date, 2);
 
     if (isBefore(dateWithSub, new Date())) {
+      // Verify if is before the minimal 2 hours to cancel
       return res.status(401).json({
         error: 'You can only cancel appointments 2 hours in advance.',
       });
@@ -155,7 +161,14 @@ class AppointmentController {
     await Mail.sendMail({
       to: `${appointment.provider.name} <${appointment.provider.email}>`,
       subject: 'Agendamento cancelado',
-      text: 'Você tem um novo cancelamento',
+      template: 'cancellation',
+      context: {
+        provider: appointment.provider.name,
+        user: appointment.user.name,
+        date: format(appointment.date, "'dia' dd 'de' MMMM', às' H:mm'h'", {
+          locale: pt,
+        }),
+      },
     });
 
     return res.json(appointment);
