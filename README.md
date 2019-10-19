@@ -1,15 +1,17 @@
-# Module 02 - Bootcamp 9.0
+# Module 03 - Bootcamp 9.0 - GoBarber[Backend]
 
 ### This repository is a study of NodeJs API Rest
 
 ### What this project is?
 
-##### It's a simple NodeJs API REST, with user's register, login and update user.
+##### It's a simple NodeJs API REST CRUD
 ##### Features:
 ###### Session validation with jsonwebtoken
 ###### Sequelize DataBase
 ###### Sucrase usage
 ###### Encrypt password with bcryptjs
+###### Send email with nodemailer
+###### Appointments register
 
 ### What's was studied?
 
@@ -21,6 +23,11 @@
 - [x] bcryptjs
 - [x] yup
 - [x] jsonwebtoken
+- [x] express-handlebars
+- [x] nodemailer
+- [x] youch
+- [] date-fns
+- [] bee-queue
 
 ## A little explanation...
 
@@ -49,5 +56,15 @@
 
 8. jsonwebtoken:
   - Token to use in sessions validate
+
+9. express-handlebars:
+  - Use to create email templates.
+  - The main use is to add JavaScript variables to a arquive .hbs, used to format a email
+
+10. nodemailer:
+  - Use to send email.
+
+11. Youch:
+  - A module to detail some error catched
 
 # GoStack 9.0
