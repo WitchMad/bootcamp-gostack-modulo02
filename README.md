@@ -26,8 +26,8 @@
 - [x] express-handlebars
 - [x] nodemailer
 - [x] youch
-- [] date-fns
-- [] bee-queue
+- [ ] date-fns
+- [ ] bee-queue
 
 ## A little explanation...
 
